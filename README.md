@@ -1,84 +1,77 @@
 # Spring Boot AI Cloudflare R2 MCP Server
 
-简体中文 | [English](README_EN.md)
+English | [简体中文](README.zh-CN.md)
 
-这是一个基于Spring Boot AI的Cloudflare R2 MCP服务器，提供了与Cloudflare R2对象存储交互的工具。
+## Introduction
+Spring Boot AI Cloudflare R2 MCP Server is a Model Context Protocol (MCP) server implementation based on Spring Boot and Spring AI, providing integration with Cloudflare R2 object storage service.
 
-## 项目结构
+## Features
+- Complete Cloudflare R2 object storage operation support
+- Integration with Spring AI's MCP server
+- Support for various file types (text, binary, etc.)
+- Comprehensive test coverage
+- Easy configuration and deployment
 
-```
-src/main/java/com/bootcamptoprod/
-├── SpringBootAiCloudflareR2McpServerApplication.java (应用程序入口)
-├── config/
-│   └── McpConfiguration.java (MCP配置类)
-└── service/
-    └── R2ServiceClient.java (R2服务客户端)
-```
+## Prerequisites
+- JDK 17 or above
+- Maven 3.6 or above
+- Cloudflare R2 account and credentials
 
-## 配置
-
-在`application.properties`中配置以下属性：
-
+## Configuration
+Create or modify `application.properties` with your R2 credentials:
 ```properties
-# Cloudflare R2 配置
 r2.access-key-id=${R2_ACCESS_KEY_ID}
 r2.secret-access-key=${R2_SECRET_ACCESS_KEY}
 r2.endpoint=${R2_ENDPOINT}
 ```
 
-请确保在运行应用程序之前设置以下环境变量：
-- `R2_ACCESS_KEY_ID`: Cloudflare R2的访问密钥ID
-- `R2_SECRET_ACCESS_KEY`: Cloudflare R2的秘密访问密钥
-- `R2_ENDPOINT`: Cloudflare R2的端点URL (例如: https://accountid.r2.cloudflarestorage.com)
+## Quick Start
+1. Clone the repository:
+```bash
+git clone https://github.com/lskun/spring-boot-ai-cloudflare-r2-mcp-server.git
+```
 
-## 可用工具
+2. Set up environment variables:
+```bash
+export R2_ACCESS_KEY_ID=your_access_key_id
+export R2_SECRET_ACCESS_KEY=your_secret_access_key
+export R2_ENDPOINT=your_r2_endpoint
+```
 
-该服务器提供以下Cloudflare R2操作工具：
-
-- `listBuckets`: 列出Cloudflare R2中的所有存储桶
-- `createBucket`: 在Cloudflare R2中创建新的存储桶
-- `deleteBucket`: 从Cloudflare R2中删除存储桶
-- `listObjects`: 列出存储桶中的对象
-- `uploadObject`: 将对象上传到存储桶
-- `downloadObject`: 从存储桶下载对象
-- `deleteObject`: 从存储桶删除对象
-- `getObjectMetadata`: 获取对象元数据
-
-## 构建与运行
-
-### 构建项目
-
+3. Build the project:
 ```bash
 mvn clean package
 ```
 
-### 运行应用程序
-
+4. Run tests:
 ```bash
-java -jar target/spring-boot-ai-cloudflare-r2-mcp-server-0.0.1-SNAPSHOT.jar
+./test-r2-service-client.sh
 ```
 
-## 使用示例
+## API Reference
+The service provides the following main functionalities:
+- List buckets
+- Create/Delete buckets
+- Upload/Download objects
+- List objects in bucket
+- Get object metadata
+- Delete objects
 
-在Spring AI应用程序中，可以通过以下方式使用此MCP服务器：
+## Development
+The project uses Spring Boot 3.4.4 and Spring AI 1.0.0-M6. Main components include:
+- `R2ServiceClient`: Core service class for R2 operations
+- `McpConfiguration`: MCP tool configuration
+- Integration tests for all operations
 
-```java
-@Autowired
-private McpClient mcpClient;
+## Contributing
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
 
-public void useR2Tools() {
-    // 列出所有存储桶
-    List<String> buckets = mcpClient.call("listBuckets", new HashMap<>(), new TypeReference<List<String>>() {});
-    System.out.println("Buckets: " + buckets);
-    
-    // 上传对象
-    Map<String, Object> params = new HashMap<>();
-    params.put("bucketName", "my-bucket");
-    params.put("key", "test.txt");
-    params.put("content", "Hello, Cloudflare R2!");
-    params.put("contentType", "text/plain");
-    params.put("contentFormat", "text");
-    String result = mcpClient.call("uploadObject", params, String.class);
-    System.out.println(result);
-}
-```
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contact
+If you have any questions or suggestions, please feel free to create an issue. 
