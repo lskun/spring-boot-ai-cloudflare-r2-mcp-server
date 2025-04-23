@@ -7,7 +7,7 @@
 ## 项目结构
 
 ```
-src/main/java/com/bootcamptoprod/
+src/main/java/com/lskun/mcp/
 ├── SpringBootAiCloudflareR2McpServerApplication.java (应用程序入口)
 ├── config/
 │   └── McpConfiguration.java (MCP配置类)

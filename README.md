@@ -5,6 +5,17 @@ English | [简体中文](README.zh-CN.md)
 ## Introduction
 Spring Boot AI Cloudflare R2 MCP Server is a Model Context Protocol (MCP) server implementation based on Spring Boot and Spring AI, providing integration with Cloudflare R2 object storage service.
 
+## Project Structure
+
+```
+src/main/java/com/lskun/mcp/
+├── SpringBootAiCloudflareR2McpServerApplication.java (Application entry)
+├── config/
+│   └── McpConfiguration.java (MCP configuration class)
+└── service/
+    └── R2ServiceClient.java (R2 service client)
+```
+
 ## Features
 - Complete Cloudflare R2 object storage operation support
 - Integration with Spring AI's MCP server
