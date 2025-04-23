@@ -43,10 +43,20 @@ export R2_ENDPOINT=your_r2_endpoint
 mvn clean package
 ```
 
-4. Run tests:
+4. Run integration tests:
 ```bash
-./test-r2-service-client.sh
+# Run all tests in R2ServiceClientTest
+mvn test -Dtest=R2ServiceClientTest
+
+# Or run a specific test method
+mvn test -Dtest=R2ServiceClientTest#testListBuckets
 ```
+
+The test suite includes comprehensive tests for all R2 operations:
+- Bucket operations (list, create, delete)
+- Object operations (upload, download, list, delete)
+- Content format handling (text, base64, file path)
+- Object metadata management
 
 ## API Reference
 The service provides the following main functionalities:

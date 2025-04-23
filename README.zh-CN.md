@@ -52,6 +52,22 @@ r2.endpoint=${R2_ENDPOINT}
 mvn clean package
 ```
 
+### 运行测试
+
+```bash
+# 运行R2ServiceClientTest中的所有测试
+mvn test -Dtest=R2ServiceClientTest
+
+# 或运行特定的测试方法
+mvn test -Dtest=R2ServiceClientTest#testListBuckets
+```
+
+测试套件包含了所有R2操作的完整测试：
+- 存储桶操作（列表、创建、删除）
+- 对象操作（上传、下载、列表、删除）
+- 内容格式处理（文本、base64、文件路径）
+- 对象元数据管理
+
 ### 运行应用程序
 
 ```bash
