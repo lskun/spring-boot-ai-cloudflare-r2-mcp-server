@@ -1,5 +1,7 @@
 # Spring Boot AI Cloudflare R2 MCP Server
 
+简体中文 | [English](README_EN.md)
+
 这是一个基于Spring Boot AI的Cloudflare R2 MCP服务器，提供了与Cloudflare R2对象存储交互的工具。
 
 ## 项目结构
