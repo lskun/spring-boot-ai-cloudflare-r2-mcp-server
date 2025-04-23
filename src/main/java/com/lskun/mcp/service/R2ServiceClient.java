@@ -166,16 +166,55 @@ public class R2ServiceClient {
     Upload an object to a bucket. Supports ALL file types including:
     TEXT files (txt, xml, html, csv, md, json, etc.) and
     BINARY files (pdf, doc, docx, xls, xlsx, images, videos, etc.).
+    
     Parameters:
-    bucketName (string) - name of the bucket;
-    key (string) - object key/filename with extension;
-    content (string) - file content as text, Base64 encoded binary data, or file path;
-    contentType (string) - MIME type of the content;
-    contentFormat (string, optional) - format of content: "text" (default), "base64", or "path".
-    Common MIME types: text/plain (txt), text/html (html), text/xml (xml), text/csv (csv),
-    text/markdown (md), application/json (json), application/pdf (pdf),
-    application/msword (doc), application/vnd.openxmlformats-officedocument.wordprocessingml.document (docx),
-    image/jpeg (jpg), image/png (png), etc.
+    - bucketName (string) - name of the bucket
+    - key (string) - object key/filename with extension (e.g., "folder/file.txt")
+    - content (string) - file content in one of three formats:
+      * Text content: raw text data
+      * Base64: Base64 encoded binary data
+      * Path: local file system path to the file
+    - contentType (string) - MIME type of the content (optional, will be inferred from file extension if not provided)
+    - contentFormat (string) - format of the content: "text" (default), "base64", or "path"
+    
+    Common MIME types by category:
+    Text files:
+    - text/plain (txt)
+    - text/html (html)
+    - text/xml (xml)
+    - text/csv (csv)
+    - text/markdown (md)
+    - application/json (json)
+    
+    Documents:
+    - application/pdf (pdf)
+    - application/msword (doc)
+    - application/vnd.openxmlformats-officedocument.wordprocessingml.document (docx)
+    - application/vnd.ms-excel (xls)
+    - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet (xlsx)
+    
+    Images:
+    - image/jpeg (jpg, jpeg)
+    - image/png (png)
+    - image/gif (gif)
+    - image/webp (webp)
+    - image/svg+xml (svg)
+    
+    Audio/Video:
+    - audio/mpeg (mp3)
+    - audio/wav (wav)
+    - video/mp4 (mp4)
+    - video/webm (webm)
+    
+    Archives:
+    - application/zip (zip)
+    - application/x-7z-compressed (7z)
+    - application/gzip (gz)
+    
+    Returns: Success message with object key if upload is successful
+    Throws: 
+    - IllegalArgumentException: If content format is invalid or file not found
+    - S3Exception: If upload fails due to S3 service issues
     """)
     public String uploadObject(String bucketName, String key, String content, String contentType, String contentFormat) {
         logger.info("Uploading object to bucket: {} with key: {}, contentFormat: {}", bucketName, key, contentFormat);
