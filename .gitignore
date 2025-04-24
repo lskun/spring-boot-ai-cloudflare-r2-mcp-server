@@ -27,3 +27,12 @@ replay_pid*
 .idea
 target
 logs
+xnotes
+.cursor/rules/
+.cursorignore
+.cursorindexingignore
+.cursor/
+docs/
+
+# Private individual user cursor rules
+.cursor/rules/_*.mdc

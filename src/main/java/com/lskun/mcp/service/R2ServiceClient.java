@@ -93,7 +93,7 @@ public class R2ServiceClient {
     public String createBucket(String bucketName) {
         logger.info("Creating bucket: {}", bucketName);
         try {
-            CreateBucketResponse response = s3Client.createBucket(CreateBucketRequest.builder()
+            s3Client.createBucket(CreateBucketRequest.builder()
                     .bucket(bucketName)
                     .build());
             logger.info("Bucket '{}' created successfully.", bucketName);
@@ -322,10 +322,10 @@ public class R2ServiceClient {
     Supports ALL file types including TEXT files (txt, xml, html, csv, md, json, etc.)
     and BINARY files (pdf, doc, docx, images, videos, etc.).
     Parameters:
-    bucketName (string) - name of the bucket;
-    key (string) - object key/filename to download;
-    destinationPath (string, optional) - local path where the file should be saved (if not provided, file will be saved in the current project root directory using the original key as filename);
-    responseType (string, optional) - force specific handling: 'text' to return content as text, 'file' to save to file.
+    - bucketName (string) - name of the bucket;
+    - key (string) - object key/filename to download;
+    - destinationPath (string, optional) - local path where the file should be saved (if not provided, file will be saved in the current project root directory using the original key as filename);
+    - responseType (string, optional) - force specific handling: 'text' to return content as text, 'file' to save to file.
     Returns: For text files without destinationPath - the file content as String;
     For binary files or when destinationPath is provided - the path to the saved file.
     """)
